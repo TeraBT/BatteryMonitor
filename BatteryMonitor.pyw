@@ -14,6 +14,7 @@
 import psutil
 import tkinter as tk
 import time
+import ctypes
 #import winsound
 
 
@@ -36,17 +37,17 @@ def showMessage(value):
         warning_low.pack(padx=50, pady=20)
 
     ok_button = tk.Button(text="Vῑdῑ!", font=("Arial", 10), command=window.destroy)
-    end_program_button = tk.Button(text="Hāc sessiōne nōn adhibēre", font=("Arial", 10), command=killProgram(window))
+    end_program_button = tk.Button(text="Hāc sessiōne nōn adhibēre", font=("Arial", 10), command=exit)
     ok_button.pack(padx=10, pady=(0, 15))
     end_program_button.pack(padx=10, pady=(0, 15))
-    window.after(50000, window.destroy())
+    window.after(50000, window.destroy)
     window.mainloop()
 
 #TODO this might not be necessary but only putting exit with brackets as command in end_program_button
 # but see if this works first, then we can test it with the old setup but I don't think it will do mutch
-def killProgram(window: tk.Tk):
-    window.destroy()
-    exit()
+# def killProgram(window: tk.Tk):
+#     window.destroy()
+#     exit
 
 
 
@@ -66,5 +67,5 @@ while(True):
 
         time.sleep(60)
 
-    except:
-        time.sleep(10)
+    except Exception as error:
+        ctypes.windll.user32.MessageBoxW(0, "The following error has occurred: " + error, "Error", 0)
