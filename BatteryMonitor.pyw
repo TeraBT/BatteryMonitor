@@ -5,9 +5,8 @@
 #1.1 Window stays on top
 #1.2 Close session button added
 #1.2.1 Sound deactivated. 27.12.2021
-#1.2.2 Window reduplication bug NOT YET fixed. --13.07.2023--
-#Idea: don't show for 10 min: button with window destroy and time.sleep
-#https://www.geeksforgeeks.org/how-to-bind-multiple-commands-to-tkinter-button/
+#1.2.2 Window reduplication bug fixed. --?13.07.2023--
+#1.3 Pause for 20 min. button added. --27.10.2023--
 
 
 
@@ -36,18 +35,15 @@ def showMessage(value):
                               font=("Arial", 15))
         warning_low.pack(padx=50, pady=20)
 
-    ok_button = tk.Button(text="Vῑdῑ!", font=("Arial", 10), command=window.destroy)
-    end_program_button = tk.Button(text="Hāc sessiōne nōn adhibēre", font=("Arial", 10), command=exit)
+    ok_button = tk.Button(text="vῑdῑ", font=("Arial", 10), command=window.destroy)
+    pause_button = tk.Button(text="moram 20 min. facere", font=("Arial", 10), command=lambda: (window.destroy(),
+                                                                                               time.sleep(1200)))
+    end_program_button = tk.Button(text="hāc sessiōne nōn adhibēre", font=("Arial", 10), command=exit)
     ok_button.pack(padx=10, pady=(0, 15))
+    pause_button.pack(padx=10, pady=(0, 15))
     end_program_button.pack(padx=10, pady=(0, 15))
     window.after(50000, window.destroy)
     window.mainloop()
-
-#TODO this might not be necessary but only putting exit with brackets as command in end_program_button
-# but see if this works first, then we can test it with the old setup but I don't think it will do mutch
-# def killProgram(window: tk.Tk):
-#     window.destroy()
-#     exit
 
 
 
